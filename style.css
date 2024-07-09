@@ -1,0 +1,203 @@
+:root {
+  --color: #f0f0f0f;
+  --grey-color: #505050;
+  --background-color: #f0f0f0;
+  --border-radius: 11px;
+  --form-background-color: #f0f0f0;
+  --form-input-color: #000000;
+  --form-input-background-color: #e3e3e3;
+  --form-input-placeholder-color: #545454;
+  --form-input-focus-outline: 1px solid #cfcfcf;
+  --form-submit-color: #ffffff;
+  --form-submit-background-color: #000000;
+  --form-submit-hover-background-color: #2b2a2a;
+  --form-close-color: #000000;
+  --form-close-background-color: #f3f3f3;
+  --form-close-border: 1px solid #c0c0c0;
+  --form-close-hover-background-color: #eaeaea;
+  --book-card-color: #000000;
+  --book-card-grey-color: #424242;
+  --book-card-border: rgba(0, 0, 0, 0.1) 1px solid;
+  --book-card-border-hover: #000000 1px solid;
+  --delete-symbol-hover-background-color: #656565;
+  --border-divider: 1px solid #999999;
+  --read-status-checked-background: #121212;
+  --read-status-checked-border: 1px solid var(--read-status-checked-background);
+  --read-status-unchecked-background: #e3e3e3;
+  --read-status-unchecked-border: 1px solid #adadad;
+  --read-status-color: #e3e3e3;
+  --add-demo-books-background: #f0f0f0;
+  --add-demo-books-color: #656565;
+  --add-demo-books-background-hover: #dfdfdf;
+  --toggle-theme-switch-width: 51px;
+  --toggle-theme-switch-height: 24px;
+  --toggle-theme-switch-icon-size: 16px;
+  --button-active-outline: 2px solid #dedede;
+}
+
+body.dark-theme {
+  --color: #e3e3e3;
+  --grey-color: #a4a4a4;
+  --background-color: #151515;
+  --border-radius: 11px;
+  --form-background-color: #151515;
+  --form-input-color: #e3e3e3;
+  --form-input-background-color: #242424;
+  --form-input-placeholder-color: #767676;
+  --form-input-focus-outline: 1px solid #454545;
+  --form-submit-color: #121212;
+  --form-submit-background-color: #e3e3e3;
+  --form-submit-hover-background-color: #ffffff;
+  --form-close-color: #b0b0b0;
+  --form-close-background-color: #121212;
+  --form-close-border: 1px solid #626262;
+  --form-close-hover-background-color: #1f1f1f;
+  --book-card-border: #1f1f1f 1px solid;
+  --border-divider: 1px solid #505050;
+  --book-card-border-hover: #e3e3e3 1px solid;
+  --add-demo-books-background: var(--form-close-background-color);
+  --add-demo-books-color: var(--form-close-color);
+  --add-demo-books-background-hover: var(--form-close-hover-background-color);
+  --button-active-outline: 2px solid #424242;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--color);
+  transition: background 0.4s ease-in-out;
+}
+
+button:active {
+  outline: var(--button-active-outline);
+}
+
+/* Header */
+
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  font-size: 1.3rem;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  border-bottom: var(--border-divider);
+  padding: 0 32px;
+}
+header h1 {
+  grid-column: 2;
+  justify-self: center;
+}
+
+/* Dark Theme Toggle Switch */
+
+.switch {
+  position: relative;
+  grid-row: 1;
+  grid-column: 3;
+  justify-self: flex-end;
+  width: var(--toggle-theme-switch-width);
+  height: var(--toggle-theme-switch-height);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #d4d4d4;
+  transition: 0.4s;
+  border-radius: var(--border-radius);
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: var(--toggle-theme-switch-icon-size, 1.4em);
+  width: var(--toggle-theme-switch-icon-size, 1.4em);
+  border-radius: 20px;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--background-color);
+  transition: 0.4s;
+}
+
+.switch input:checked + .slider {
+  background-color: #303136;
+}
+
+.switch input:checked + .slider:before {
+  left: calc(
+    100% -
+      (
+        var(--toggle-theme-switch-icon-size, 1.4em) +
+          var(--slider-offset, 0.3em)
+      )
+  );
+  background-color: var(--background-color);
+}
+
+/* Main */
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 36px;
+  gap: 36px;
+}
+
+/* Empty Library Message */
+
+.empty-library.hidden {
+  display: none;
+}
+
+.empty-library {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 26px 0 0 0;
+  max-width: 50ch;
+  text-align: center;
+}
+
+.empty-library * {
+  margin: 0;
+}
+
+/* Books Container*/
+
+.books {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.books > h1 {
+  margin: 32px 0 6px 0;
+  border-bottom: var(--border-divider);
+  font-size: 2.2rem;
+}  
